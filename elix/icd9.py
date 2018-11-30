@@ -16,7 +16,7 @@ def _construct_icd9_categories(def_column="Enhanced ICD-9-CM"): # args?
         category = row['Category']
         codes = row[def_column]
         parsed_codes = vocab.parse(codes)
-        elix_cats[(category, vocab.vocab_name, vocab.vocab_domain)] = parsed_codes
+        elix_cats[(category, vocab.vocab_domain, vocab.vocab_name)] = parsed_codes
         
     return elix_cats
         

@@ -10,13 +10,13 @@ vocab = ICD10CM(use_decimals=True)
 
 def _construct_icd10_categories(def_column="ICD-10"): # args? 
 #     df = pd.read_csv(os.path.join(resources, 'NDF_January_2016.xlsx'))
-    df = pd.read_csv(pd.read_csv(os.path.join(resources, 'elixhauser_definitions.csv')))
+    df = pd.read_csv(os.path.join(resources, 'elixhauser_definitions.csv'))
     elix_cats = {}
     for _, row in df.iterrows():
         category = row['Category']
         codes = row[def_column]
         parsed_codes = vocab.parse(codes)
-        elix_cats[(category, vocab.vocab_name, vocab.vocab_domain)] = parsed_codes
+        elix_cats[(category, vocab.vocab_domain, vocab.vocab_name)] = parsed_codes
         
     return elix_cats
         
