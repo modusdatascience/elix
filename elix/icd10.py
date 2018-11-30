@@ -4,13 +4,13 @@ from clinvoc.icd10 import ICD10CM
 from clinvoc.code_collections import CodeCollection
 from modulecache.invalidators import FileChangeInvalidator
 from modulecache.backends import PickleBackend
-# from .resources import resources
+from .resources import resources
 
 vocab = ICD10CM(use_decimals=True)
 
 def _construct_icd10_categories(def_column="ICD-10"): # args? 
 #     df = pd.read_csv(os.path.join(resources, 'NDF_January_2016.xlsx'))
-    df = pd.read_csv("/Users/Matt/Work/elix/elix/resources/elixhauser_definitions.csv")
+    df = pd.read_csv(pd.read_csv(os.path.join(resources, 'elixhauser_definitions.csv')))
     elix_cats = {}
     for _, row in df.iterrows():
         category = row['Category']
